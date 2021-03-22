@@ -40,11 +40,26 @@
   text-align: center;
   transition: all 0.2s;
   cursor: pointer;
-  border: 1px solid transparent;
+  border: 3px solid transparent;
+  outline: none;
 
   @media (hover: hover) {
     &:hover {
-      border-color: white;
+      border-color: black;
+      color: black;
+    }
+  }
+}
+
+.secondaryButton {
+  composes: solidButton;
+  border: 3px solid $teal;
+  color: $teal;
+  background-color: white;
+
+  @media (hover: hover) {
+    &:hover {
+      color: #6796a7cc; // $teal with opacity
     }
   }
 }

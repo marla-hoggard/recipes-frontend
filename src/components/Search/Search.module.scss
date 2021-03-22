@@ -22,6 +22,11 @@
   margin: 0 5px;
 }
 
+.secondarybutton {
+  composes: secondaryButton from '../../global-styles/base.module.scss';
+  margin: 0 5px;
+}
+
 .inputGroup {
   display: flex;
   flex: 1;

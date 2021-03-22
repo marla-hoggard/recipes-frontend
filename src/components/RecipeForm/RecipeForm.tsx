@@ -153,6 +153,52 @@ const RecipeForm: React.FC<Props> = ({ id, savedValues = {}, type }) => {
     [],
   );
 
+  const handleCancel = useCallback(() => {
+    history.push(`/recipe/${id}`);
+  }, [history, id]);
+
+  const handleSubmit = useCallback(
+    async (values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
+      setSubmitting(true);
+      let result: AddRecipeResponse;
+
+      if (type === 'edit' && id) {
+        const editRequest = prepareEditRequest(values, savedValues, showIngredientNotes);
+        result = await editRecipe(id, editRequest);
+      } else {
+        const addRequest: AddRecipeRequest = {
+          ...values,
+          tags: trimAndRemoveEmpty(values.tags.split(',')),
+          ingredients: showIngredientNotes
+            ? values.ingredientsWithNotes.map(({ ingredient, note }) => {
+                const converted: Ingredient = {
+                  ingredient: replaceFractions(ingredient),
+                };
+                if (note) {
+                  converted.note = replaceFractions(note);
+                }
+                return converted;
+              })
+            : trimAndRemoveEmpty(values.ingredientsTextarea.split(/\n/)).map((i) => ({
+                ingredient: replaceFractions(i),
+              })),
+          steps: trimAndRemoveEmpty(replaceFractions(values.steps).split(/\n+/)),
+          footnotes: trimAndRemoveEmpty(values.footnotes.map((f) => replaceFractions(f))),
+        };
+        result = await addRecipe(addRequest);
+      }
+
+      if ('id' in result) {
+        setSubmitting(false);
+        history.push(`/recipe/${result.id}`);
+      } else {
+        setSubmitError(result.error.message);
+        setSubmitting(false);
+      }
+    },
+    [history, id, savedValues, showIngredientNotes, type],
+  );
+
   if (type === 'edit' && !id) {
     history.push('/404');
   }
@@ -166,44 +212,7 @@ const RecipeForm: React.FC<Props> = ({ id, savedValues = {}, type }) => {
           ...savedValues,
         }}
         validationSchema={validationSchema}
-        onSubmit={async (values, { setSubmitting }: FormikHelpers<FormValues>) => {
-          setSubmitting(true);
-          let result: AddRecipeResponse;
-
-          if (type === 'edit' && id) {
-            const editRequest = prepareEditRequest(values, savedValues, showIngredientNotes);
-            result = await editRecipe(id, editRequest);
-          } else {
-            const addRequest: AddRecipeRequest = {
-              ...values,
-              tags: trimAndRemoveEmpty(values.tags.split(',')),
-              ingredients: showIngredientNotes
-                ? values.ingredientsWithNotes.map(({ ingredient, note }) => {
-                    const converted: Ingredient = {
-                      ingredient: replaceFractions(ingredient),
-                    };
-                    if (note) {
-                      converted.note = replaceFractions(note);
-                    }
-                    return converted;
-                  })
-                : trimAndRemoveEmpty(values.ingredientsTextarea.split(/\n/)).map((i) => ({
-                    ingredient: replaceFractions(i),
-                  })),
-              steps: trimAndRemoveEmpty(replaceFractions(values.steps).split(/\n+/)),
-              footnotes: trimAndRemoveEmpty(values.footnotes.map((f) => replaceFractions(f))),
-            };
-            result = await addRecipe(addRequest);
-          }
-
-          if ('id' in result) {
-            setSubmitting(false);
-            history.push(`/recipe/${result.id}`);
-          } else {
-            setSubmitError(result.error.message);
-            setSubmitting(false);
-          }
-        }}
+        onSubmit={handleSubmit}
       >
         {({ values, errors, touched, isSubmitting, setFieldValue }) => (
           <Form className={classes.form}>
@@ -298,8 +307,17 @@ const RecipeForm: React.FC<Props> = ({ id, savedValues = {}, type }) => {
             )}
             <StepsAndNotes values={values} errors={errors} touched={touched} />
             <div className={classes.formRow}>
+              {type === 'edit' && (
+                <button
+                  className={classes.secondaryButton}
+                  onClick={handleCancel}
+                  disabled={isSubmitting}
+                >
+                  Cancel
+                </button>
+              )}
               <button className={classes.solidButton} type="submit" disabled={isSubmitting}>
-                Submit
+                {type === 'edit' ? 'Save Changes' : 'Submit'}
               </button>
             </div>
             <div className={classes.formRow}>

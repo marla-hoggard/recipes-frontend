@@ -119,7 +119,7 @@ const AdvancedSearchForm: React.FC<{ paramValues: Partial<SearchValues> }> = ({ 
         <button className={classes.button} type="submit" disabled={isSubmitting}>
           Search
         </button>
-        <button className={classes.button} type="reset">
+        <button className={classes.secondaryButton} type="reset">
           Reset
         </button>
       </div>
