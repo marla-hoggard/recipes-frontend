@@ -28,6 +28,9 @@ export const addRecipe = async (request: AddRecipeRequest): Promise<AddRecipeRes
   }
 };
 
+/**
+ * Edit a specific recipe by id
+ */
 export const editRecipe = async (
   recipeId: number,
   request: EditRecipeRequest,
