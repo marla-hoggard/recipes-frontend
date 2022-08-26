@@ -8,6 +8,9 @@ import {
 } from '../types/recipe.types';
 import { BACKEND_BASE_URL } from '../constants';
 
+/**
+ * Add a new recipe.
+ */
 export const addRecipe = async (request: AddRecipeRequest): Promise<AddRecipeResponse> => {
   try {
     const response = await fetch(`${BACKEND_BASE_URL}/recipe/new`, {
