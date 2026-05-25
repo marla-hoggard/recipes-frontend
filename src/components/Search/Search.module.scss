@@ -1,11 +1,11 @@
 @import '../../global-styles/base.module.scss';
 @import '../RecipeForm/RecipeForm.module.scss';
 .form {
-  composes: form from '../RecipeForm/RecipeForm.module.scss';
+  composes: form;
 }
 
 .formRow {
-  composes: formRow from '../RecipeForm/RecipeForm.module.scss';
+  composes: formRow;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -18,12 +18,12 @@
 }
 
 .button {
-  composes: solidButton from '../../global-styles/base.module.scss';
+  composes: solidButton;
   margin: 0 5px;
 }
 
 .secondarybutton {
-  composes: secondaryButton from '../../global-styles/base.module.scss';
+  composes: secondaryButton;
   margin: 0 5px;
 }
 
@@ -44,13 +44,13 @@
 }
 
 .label {
-  composes: label from '../RecipeForm/RecipeForm.module.scss';
+  composes: label;
   margin-right: 10px;
   white-space: nowrap;
 }
 
 .select {
-  composes: select from '../RecipeForm/RecipeForm.module.scss';
+  composes: select;
   padding: 5px;
   margin: 0;
   width: 150px;

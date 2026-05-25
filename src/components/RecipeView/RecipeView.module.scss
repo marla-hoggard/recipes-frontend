@@ -92,7 +92,7 @@
 }
 
 .category {
-  composes: link from '../../global-styles/base.module.scss';
+  composes: link;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 16px;

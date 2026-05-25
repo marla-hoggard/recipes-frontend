@@ -6,7 +6,11 @@
 }
 
 .sectionTitle {
-  composes: sectionTitle from './RecipeView.module.scss';
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-family: Signika, sans-serif;
 }
 
 .stepContainer {
@@ -50,6 +54,8 @@
 }
 
 .superscript {
-  composes: superscript from './RecipeView.module.scss';
+  font-size: 0.5em;
+  font-weight: 600;
+  vertical-align: super;
   color: $purple;
 }

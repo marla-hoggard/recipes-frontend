@@ -17,7 +17,7 @@
 }
 
 .solidButton {
-  composes: solidButton from '../../global-styles/base.module.scss';
+  composes: solidButton;
   margin: auto;
 }
 

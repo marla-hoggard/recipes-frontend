@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "dev": "vite",
+    "start": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{ts,tsx}'",
     "check-types": "tsc"
@@ -23,7 +23,6 @@
     "@types/classnames": "^2.2.10",
     "@types/debounce-promise": "^3.1.3",
     "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@types/react-redux": "^7.1.7",
@@ -31,38 +30,29 @@
     "@types/yup": "^0.29.4",
     "classnames": "^2.2.6",
     "debounce-promise": "^3.1.2",
-    "eslint": "^6.8.0",
     "formik": "^2.1.5",
-    "node-sass": "^4.14.1",
     "normalize-scss": "^7.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
     "redux": "^4.0.0",
-    "typescript": "~3.8.2",
+    "typescript": "^5.6.0",
     "yup": "^0.29.3"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.9.0",
     "@typescript-eslint/parser": "^3.9.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "@types/node": "^20.0.0",
+    "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-react": "^1.1.7",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react-hooks": "^4.0.8",
-    "prettier": "^2.0.5"
-  },
-  "resolutions": {
-    "elliptic": "^6.5.3",
-    "http-proxy": "^1.18.1",
-    "lodash": "^4.17.19",
-    "selfsigned": "^1.10.8",
-    "serialize-javascript": "^3.1.0",
-    "websocket-extensions": "^0.1.4"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "prettier": "^2.0.5",
+    "sass": "^1.80.0",
+    "vite": "^5.4.0"
   },
   "browserslist": {
     "production": [
@@ -77,6 +67,6 @@
     ]
   },
   "engines": {
-    "node": "12.x"
+    "node": ">=20"
   }
 }
