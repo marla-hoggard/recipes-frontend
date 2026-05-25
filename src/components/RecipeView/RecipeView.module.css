@@ -1,3 +1,11 @@
+.pageTitle {
+  composes: pageTitle from '../../global-styles/base.module.css';
+}
+
+.link {
+  composes: link from '../../global-styles/base.module.css';
+}
+
 .featuredStar {
   color: #ffc82a;
   font-size: 0.8em;

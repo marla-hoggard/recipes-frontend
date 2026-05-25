@@ -16,6 +16,10 @@
   right: 15px;
 }
 
+.transparentButton {
+  composes: transparentButton from '../../global-styles/base.module.css';
+}
+
 .navButton {
   composes: transparentButton from '../../global-styles/base.module.css';
   background-color: rgba(25, 25, 25, 0.3);
