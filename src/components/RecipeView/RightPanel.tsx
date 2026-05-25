@@ -1,7 +1,7 @@
 import React from 'react';
 import { GetRecipeSuccess } from '../../types/recipe.types';
 import Steps from './Steps';
-import classes from './RecipeView.module.scss';
+import classes from './RecipeView.module.css';
 
 type Props = {
   isMobileView?: boolean;

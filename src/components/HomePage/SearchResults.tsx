@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import classNames from 'classnames';
 import { Recipe } from '../../types/recipe.types';
-import classes from './TitleSearch.module.scss';
+import classes from './TitleSearch.module.css';
 
 type Props = {
   innerRef: React.RefObject<HTMLUListElement>;

@@ -1,4 +1,6 @@
-@import '../../global-styles/base.module.scss';
+.pageTitle {
+  composes: pageTitle from '../../global-styles/base.module.css';
+}
 
 .loginForm {
   font-size: 18px;
@@ -17,7 +19,7 @@
 }
 
 .solidButton {
-  composes: solidButton;
+  composes: solidButton from '../../global-styles/base.module.css';
   margin: auto;
 }
 

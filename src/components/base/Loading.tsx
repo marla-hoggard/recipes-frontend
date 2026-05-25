@@ -7,7 +7,7 @@ import {
   faHamburger,
   faIceCream,
 } from '@fortawesome/free-solid-svg-icons';
-import classes from './Loading.module.scss';
+import classes from './Loading.module.css';
 
 type Props = {
   text?: string;

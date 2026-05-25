@@ -1,6 +1,6 @@
 import React from 'react';
-import '../../../global-styles/core.scss';
-import classes from './Main.module.scss';
+import '../../../global-styles/core.css';
+import classes from './Main.module.css';
 
 type Props = {
   children: React.ReactElement;

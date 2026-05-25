@@ -7,7 +7,7 @@ import { categoryToBrowsePath } from '../base/RecipeList/categoryHelpers';
 import Ingredients from './Ingredients';
 import RightPanel from './RightPanel';
 import Tag from '../base/Tag';
-import classes from './RecipeView.module.scss';
+import classes from './RecipeView.module.css';
 
 type Props = {
   isMobileView?: boolean;

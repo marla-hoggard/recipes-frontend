@@ -1,11 +1,13 @@
-@import '../../global-styles/base.module.scss';
-@import '../RecipeForm/RecipeForm.module.scss';
+.pageTitle {
+  composes: pageTitle from '../../global-styles/base.module.css';
+}
+
 .form {
-  composes: form;
+  composes: form from '../RecipeForm/RecipeForm.module.css';
 }
 
 .formRow {
-  composes: formRow;
+  composes: formRow from '../RecipeForm/RecipeForm.module.css';
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -18,18 +20,19 @@
 }
 
 .button {
-  composes: solidButton;
+  composes: solidButton from '../../global-styles/base.module.css';
   margin: 0 5px;
 }
 
-.secondarybutton {
-  composes: secondaryButton;
+.secondaryButton {
+  composes: secondaryButton from '../../global-styles/base.module.css';
   margin: 0 5px;
 }
 
 .inputGroup {
   display: flex;
   flex: 1;
+
   &:not(:last-child) {
     margin-right: 10px;
   }
@@ -40,17 +43,18 @@
 }
 
 .input {
+  composes: input from '../RecipeForm/RecipeForm.module.css';
   width: calc(100% - 20px);
 }
 
 .label {
-  composes: label;
+  composes: label from '../RecipeForm/RecipeForm.module.css';
   margin-right: 10px;
   white-space: nowrap;
 }
 
 .select {
-  composes: select;
+  composes: select from '../RecipeForm/RecipeForm.module.css';
   padding: 5px;
   margin: 0;
   width: 150px;
@@ -83,6 +87,7 @@
 
   .inputGroup {
     width: 100%;
+
     &:not(:last-child) {
       margin-right: 0;
       margin-bottom: 10px;

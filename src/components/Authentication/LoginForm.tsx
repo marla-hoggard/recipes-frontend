@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import { login } from '../../api/users';
 import { InputField } from './FormComponents';
 import { setCurrentUser } from '../../reducers/currentUser';
-import classes from './Authentication.module.scss';
+import classes from './Authentication.module.css';
 import { saveTokenToStorage } from '../../api/helpers';
 
 type FormValues = {

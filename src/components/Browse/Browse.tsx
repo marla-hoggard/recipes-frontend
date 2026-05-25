@@ -5,7 +5,7 @@ import { BrowseCategories, Recipe, SearchParams } from '../../types/recipe.types
 import Loading from '../base/Loading';
 import RecipeList from '../base/RecipeList/RecipeList';
 import CategoryList from './CategoryList';
-import classes from './Browse.module.scss';
+import classes from './Browse.module.css';
 
 type CategoryData = {
   [k in BrowseCategories]: {

@@ -3,7 +3,7 @@ import { Formik, FormikHelpers, Form, useFormikContext } from 'formik';
 import { Category, SearchParams, Recipe } from '../../types/recipe.types';
 import { CATEGORIES } from '../../constants';
 import { RadioGroup, SelectField, InputField } from './SearchFormComponents';
-import classes from './Search.module.scss';
+import classes from './Search.module.css';
 import { searchRecipes } from '../../api/recipe';
 
 export type SearchValues = {

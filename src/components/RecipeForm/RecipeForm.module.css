@@ -1,4 +1,14 @@
-@import '../../global-styles/base.module.scss';
+.pageTitle {
+  composes: pageTitle from '../../global-styles/base.module.css';
+}
+
+.solidButton {
+  composes: solidButton from '../../global-styles/base.module.css';
+}
+
+.secondaryButton {
+  composes: secondaryButton from '../../global-styles/base.module.css';
+}
 
 .form {
   font-size: 18px;
@@ -33,7 +43,6 @@
   color: #303030;
   font-size: 16px;
   font-weight: 400;
-
   -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.05), 1px 1px 0 rgba(255, 255, 255, 1);
   -moz-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.05), 1px 1px 0 rgba(255, 255, 255, 1);
   box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.05), 1px 1px 0 rgba(255, 255, 255, 1);
@@ -53,7 +62,7 @@
 }
 
 .servingsContainer {
-  .label {
+  & .label {
     margin-right: 10px;
   }
 }
@@ -139,7 +148,7 @@
 }
 
 .notesButtons {
-  button {
+  & button {
     font-size: 11px;
     margin-left: 10px;
     border-radius: 5px;

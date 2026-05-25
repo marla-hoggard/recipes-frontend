@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import classes from './Steps.module.scss';
+import classes from './Steps.module.css';
 
 type Props = {
   steps: string[];

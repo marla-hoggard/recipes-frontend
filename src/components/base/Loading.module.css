@@ -1,0 +1,57 @@
+@keyframes food-enter-exit {
+  from {
+    transform: translateX(200%);
+    opacity: 1;
+  }
+  8% {
+    transform: translateX(0);
+  }
+  17% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  25% {
+    transform: translateX(-200%);
+    opacity: 0;
+  }
+}
+
+.loadingContainer {
+  text-align: center;
+  font-size: 45px;
+}
+
+.loadingText {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.pizza {
+  color: #f49033;
+  opacity: 0;
+  animation: food-enter-exit 5s 0s ease-in-out infinite;
+}
+
+.hamburger {
+  color: #0081a7;
+  opacity: 0;
+  animation: food-enter-exit 5s 1s ease-in-out infinite;
+}
+
+.drumstick {
+  color: #00b959;
+  opacity: 0;
+  animation: food-enter-exit 5s 2s ease-in-out infinite;
+}
+
+.icecream {
+  color: #c836d5;
+  opacity: 0;
+  animation: food-enter-exit 5s 3s ease-in-out infinite;
+}
+
+.apple {
+  color: #f07167;
+  opacity: 0;
+  animation: food-enter-exit 5s 4s ease-in-out infinite;
+}

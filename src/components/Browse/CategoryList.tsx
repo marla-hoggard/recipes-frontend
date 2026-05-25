@@ -19,7 +19,7 @@ import Chicken from './CategoryImages/Chicken';
 import Fries from './CategoryImages/Fries';
 import Pasta from './CategoryImages/Pasta';
 import { BrowseCategories } from '../../types/recipe.types';
-import classes from './Browse.module.scss';
+import classes from './Browse.module.css';
 
 type CardProps = {
   name: BrowseCategories;

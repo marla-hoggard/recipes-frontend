@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import classNames from 'classnames';
 import { Category as CategoryType } from '../../types/recipe.types';
-import classes from './Category.module.scss';
+import classes from './Category.module.css';
 import { useHistory } from 'react-router-dom';
 
 type Props = {

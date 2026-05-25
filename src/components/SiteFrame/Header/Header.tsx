@@ -8,7 +8,7 @@ import { signout } from '../../../api/users';
 import { clearTokenFromStorage } from '../../../api/helpers';
 import { selectCurrentUser, resetCurrentUser } from '../../../reducers/currentUser';
 import logo from '../../../images/logo-small.png';
-import classes from './Header.module.scss';
+import classes from './Header.module.css';
 import useMediaQuery from '../../../hooks/useMediaQuery';
 
 const Header: React.FC = () => {

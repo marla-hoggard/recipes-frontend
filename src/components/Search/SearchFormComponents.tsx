@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Field } from 'formik';
-import classes from './Search.module.scss';
+import classes from './Search.module.css';
 
 type InputFieldProps = {
   labelText?: string;

@@ -21,7 +21,7 @@ import {
 } from '../../helpers';
 import { InputField, TextAreaField, SelectField, CheckboxField } from './FormComponents';
 import { StepsAndNotes, IngredientsWithNotes } from './FieldArrays';
-import classes from './RecipeForm.module.scss';
+import classes from './RecipeForm.module.css';
 
 export type FormValues = {
   title: string;

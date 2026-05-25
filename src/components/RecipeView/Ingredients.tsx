@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import classNames from 'classnames';
 import { Ingredient } from '../../types/recipe.types';
-import classes from './Ingredients.module.scss';
+import classes from './Ingredients.module.css';
 
 type Props = {
   ingredients: Ingredient[];
