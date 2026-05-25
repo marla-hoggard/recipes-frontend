@@ -1,5 +1,3 @@
-@import './globals.scss';
-
 .pageTitle {
   text-align: center;
   margin: 0;
@@ -9,7 +7,7 @@
 
 .link {
   text-decoration: none;
-  color: $purple;
+  color: var(--purple);
   font-weight: 600;
   font-family: Signika, sans-serif;
   cursor: pointer;
@@ -36,7 +34,7 @@
   font-weight: 600;
   font-size: 1em;
   color: #ffffff;
-  background-color: $teal;
+  background-color: var(--teal);
   text-align: center;
   transition: all 0.2s;
   cursor: pointer;
@@ -53,13 +51,13 @@
 
 .secondaryButton {
   composes: solidButton;
-  border: 3px solid $teal;
-  color: $teal;
+  border: 3px solid var(--teal);
+  color: var(--teal);
   background-color: white;
 
   @media (hover: hover) {
     &:hover {
-      color: #6796a7cc; // $teal with opacity
+      color: #6796a7cc;
     }
   }
 }

@@ -13,7 +13,7 @@ import Breakfast from '../../Browse/CategoryImages/Breakfast';
 import Cheese from '../../Browse/CategoryImages/Cheese';
 import Fries from '../../Browse/CategoryImages/Fries';
 import { Category } from '../../../types/recipe.types';
-import classes from './RecipeList.module.scss';
+import classes from './RecipeList.module.css';
 
 type SVGIconProps = {
   SvgComponent: FunctionComponent<{ className?: string }>;

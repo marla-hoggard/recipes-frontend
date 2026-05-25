@@ -1,4 +1,10 @@
-@import '../../global-styles/base.module.scss';
+.pageTitle {
+  composes: pageTitle from '../../global-styles/base.module.css';
+}
+
+.link {
+  composes: link from '../../global-styles/base.module.css';
+}
 
 .featuredStar {
   color: #ffc82a;
@@ -92,10 +98,11 @@
 }
 
 .category {
-  composes: link from '../../global-styles/base.module.scss';
+  composes: link from '../../global-styles/base.module.css';
   text-transform: uppercase;
   font-weight: 700;
   font-size: 16px;
+
   @media print {
     color: black;
   }
@@ -140,7 +147,7 @@
   font-size: 0.8em;
   list-style: none;
 
-  li::before {
+  & li::before {
     content: attr(data-icon);
     padding-right: 5px;
   }
@@ -153,9 +160,9 @@
   font-size: 13.5px;
   padding: 3px 5px;
   background-color: white;
-  color: $teal;
+  color: var(--teal);
   outline: none;
-  border: 1px solid $teal;
+  border: 1px solid var(--teal);
   border-radius: 0.25em;
   white-space: nowrap;
   overflow: hidden;
@@ -171,7 +178,7 @@
     display: none;
   }
 
-  .printButtonLabel {
+  & .printButtonLabel {
     margin-left: 5px;
   }
 }

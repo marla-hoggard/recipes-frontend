@@ -7,7 +7,7 @@ import { selectCurrentUser, resetCurrentUser } from '../../reducers/currentUser'
 import { BACKEND_BASE_URL } from '../../constants';
 import logo from '../../images/logo.png';
 import TitleSearch from './TitleSearch';
-import classes from './Homepage.module.scss';
+import classes from './Homepage.module.css';
 
 const Homepage: React.FC = () => {
   const dispatch = useDispatch();

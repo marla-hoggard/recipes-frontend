@@ -2,7 +2,7 @@ import React from 'react';
 import { FieldArray, FormikErrors, FormikTouched } from 'formik';
 import { FormValues } from './RecipeForm';
 import { InputField, TextAreaField } from './FormComponents';
-import classes from './RecipeForm.module.scss';
+import classes from './RecipeForm.module.css';
 
 type Props = {
   errors: FormikErrors<FormValues>;

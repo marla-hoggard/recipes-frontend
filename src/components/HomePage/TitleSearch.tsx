@@ -5,7 +5,7 @@ import debounce from 'debounce-promise';
 import { Recipe } from '../../types/recipe.types';
 import { searchRecipes } from '../../api/recipe';
 import SearchResults from './SearchResults';
-import classes from './TitleSearch.module.scss';
+import classes from './TitleSearch.module.css';
 
 const DEBOUNCE_INTERVAL = 300;
 

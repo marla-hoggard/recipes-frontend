@@ -1,29 +1,30 @@
-@import '../../global-styles/base.module.scss';
-@import '../../global-styles/globals.scss';
-
 .stepsContainer {
   margin-bottom: 20px;
 }
 
 .sectionTitle {
-  composes: sectionTitle from './RecipeView.module.scss';
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-family: Signika, sans-serif;
 }
 
 .stepContainer {
   display: flex;
-  border-bottom: 1px dashed $lightBlue;
+  border-bottom: 1px dashed var(--light-blue);
 
   &:first-child {
-    border-top: 1px dashed $lightBlue;
+    border-top: 1px dashed var(--light-blue);
   }
 }
 
 .stepNumber {
   align-self: center;
-  flex: 0 0 30px; // ensures container width 30px
+  flex: 0 0 30px;
   font-size: 14px;
   font-weight: bold;
-  background-color: $lightBlue;
+  background-color: var(--light-blue);
   color: white;
   border-radius: 50%;
   margin-right: 10px;
@@ -38,7 +39,7 @@
 }
 
 .headerStepText {
-  color: $purple;
+  color: var(--purple);
   text-transform: uppercase;
   font-weight: 700;
   padding: 10px 0;
@@ -46,10 +47,12 @@
 
 .sectionHeader {
   font-weight: bold;
-  color: $purple;
+  color: var(--purple);
 }
 
 .superscript {
-  composes: superscript from './RecipeView.module.scss';
-  color: $purple;
+  font-size: 0.5em;
+  font-weight: 600;
+  vertical-align: super;
+  color: var(--purple);
 }

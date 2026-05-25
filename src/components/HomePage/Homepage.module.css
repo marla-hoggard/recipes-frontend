@@ -1,5 +1,3 @@
-@import '../../global-styles/base.module.scss';
-
 .heroImageContainer {
   height: 100vh;
   width: 100%;
@@ -18,8 +16,12 @@
   right: 15px;
 }
 
+.transparentButton {
+  composes: transparentButton from '../../global-styles/base.module.css';
+}
+
 .navButton {
-  composes: transparentButton from '../../global-styles/base.module.scss';
+  composes: transparentButton from '../../global-styles/base.module.css';
   background-color: rgba(25, 25, 25, 0.3);
 }
 

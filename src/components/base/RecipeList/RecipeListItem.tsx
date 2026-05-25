@@ -6,7 +6,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { Recipe as RecipeType } from '../../../types/recipe.types';
 import { getCategoryColor } from './categoryHelpers';
 import CategoryImage from './CategoryImage';
-import classes from './RecipeList.module.scss';
+import classes from './RecipeList.module.css';
 
 type Props = {
   recipe: RecipeType;

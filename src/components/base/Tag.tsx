@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import classNames from 'classnames';
-import classes from './Tag.module.scss';
+import classes from './Tag.module.css';
 import { useHistory } from 'react-router-dom';
 
 type Props = {

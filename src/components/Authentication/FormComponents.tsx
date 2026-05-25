@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Field, ErrorMessage } from 'formik';
-import classes from './Authentication.module.scss';
+import classes from './Authentication.module.css';
 
 type InputFieldProps = {
   labelText?: string;

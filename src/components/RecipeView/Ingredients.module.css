@@ -1,8 +1,9 @@
-@import '../../global-styles/base.module.scss';
-
 .sectionTitle {
-  composes: sectionTitle from './RecipeView.module.scss';
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 20px;
   margin-bottom: 0;
+  font-family: Signika, sans-serif;
 }
 
 .ingredientsFillContainer {
@@ -29,7 +30,7 @@
   font-size: 0.8em;
   list-style: none;
 
-  li::before {
+  & li::before {
     content: attr(data-icon);
     padding-right: 5px;
   }
@@ -48,5 +49,7 @@
 }
 
 .superscript {
-  composes: superscript from './RecipeView.module.scss';
+  font-size: 0.5em;
+  font-weight: 600;
+  vertical-align: super;
 }

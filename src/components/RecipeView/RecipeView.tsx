@@ -9,7 +9,7 @@ import Error from '../base/Error';
 import Loading from '../base/Loading';
 import LeftPanel from './LeftPanel';
 import RightPanel from './RightPanel';
-import classes from './RecipeView.module.scss';
+import classes from './RecipeView.module.css';
 
 const printRecipe = () => {
   window.print();
