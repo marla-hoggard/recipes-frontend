@@ -6,6 +6,11 @@ type Props = {
   recipe: GetRecipeSuccess;
 };
 
+/**
+ * Adds a scripe with structured data for third-party services to parse.
+ */
+
+// We need to sanitize our custom recipe data into a standard format
 // Section headers are stored as the full ingredient/step text wrapped in underscores
 const isSectionHeader = (text: string) => /^_.+_$/.test(text.trim());
 const stripEmphasis = (text: string) => text.replace(/^_(.+)_$/, '$1').replace(/_/g, '');
