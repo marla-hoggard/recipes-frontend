@@ -9,6 +9,7 @@ import Error from '../base/Error';
 import Loading from '../base/Loading';
 import LeftPanel from './LeftPanel';
 import RightPanel from './RightPanel';
+import RecipeJsonLd from './RecipeJsonLd';
 import classes from './RecipeView.module.css';
 
 const printRecipe = () => {
@@ -53,6 +54,7 @@ const RecipeView: React.FC = () => {
   if (recipe) {
     return (
       <>
+        <RecipeJsonLd recipe={recipe} />
         <h1 className={classes.pageTitle}>
           {recipe.title}
           {recipe.featured && <FontAwesomeIcon className={classes.featuredStar} icon={faStar} />}
