@@ -11,13 +11,17 @@ const NON_BROWSER_SIGNAL_HEADER = 'x-user-agent';
 const RECOGNIZED_BOT_UA = 'facebookexternalhit/1.1';
 
 export default async (request: Request, context: Context) => {
-  if (request.headers.has(NON_BROWSER_SIGNAL_HEADER)) {
+  const matched = request.headers.has(NON_BROWSER_SIGNAL_HEADER);
+  if (matched) {
     const headers = new Headers(request.headers);
     headers.set('user-agent', RECOGNIZED_BOT_UA);
     request = new Request(request, { headers });
   }
 
-  return context.next(request);
+  const response = await context.next(request);
+  response.headers.set('x-debug-edge-ran', 'true');
+  response.headers.set('x-debug-edge-matched', String(matched));
+  return response;
 };
 
 export const config = { path: '/recipe/*' };
