@@ -1,4 +1,5 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { GetRecipeSuccess } from '../../types/recipe.types';
 
 type Props = {
@@ -47,12 +48,13 @@ const buildRecipeJsonLd = (recipe: GetRecipeSuccess) => {
 const RecipeJsonLd: React.FC<Props> = ({ recipe }) => {
   const json = buildRecipeJsonLd(recipe);
 
-  return (
+  return createPortal(
     <script
       type="application/ld+json"
       // Escape `<` so the JSON can't prematurely close the script tag
       dangerouslySetInnerHTML={{ __html: JSON.stringify(json).replace(/</g, '\\u003c') }}
-    />
+    />,
+    document.head,
   );
 };
 
