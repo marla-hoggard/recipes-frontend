@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getAllRecipes, searchRecipes } from '../../api/recipe';
 import { BrowseCategories, Recipe, SearchParams } from '../../types/recipe.types';
 import Loading from '../base/Loading';
@@ -79,7 +79,7 @@ function isBrowseCategory(name: string): name is BrowseCategories {
 
 const Browse: React.FC = () => {
   const { name } = useParams<{ name?: string }>();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [pageTitle, setPageTitle] = useState('');
   const [loading, setLoading] = useState(true);
   const [searchResults, setSearchResults] = useState<Recipe[]>([]);
@@ -99,7 +99,7 @@ const Browse: React.FC = () => {
     }
 
     if (!isBrowseCategory(name)) {
-      history.push('/404');
+      navigate('/404');
       return;
     }
 
@@ -107,7 +107,7 @@ const Browse: React.FC = () => {
 
     setPageTitle(displayName);
     fetchSearchResults(searchParams);
-  }, [name, history, fetchSearchResults]);
+  }, [name, navigate, fetchSearchResults]);
 
   const PageTitle = useMemo(() => <h1 className={classes.pageTitle}>{pageTitle}</h1>, [pageTitle]);
 

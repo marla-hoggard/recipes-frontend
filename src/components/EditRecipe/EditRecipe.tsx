@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { getRecipe } from '../../api/recipe';
 import { selectCurrentUser, selectCurrentUserFullName } from '../../reducers/currentUser';
@@ -8,8 +8,8 @@ import RecipeForm, { FormValues } from '../RecipeForm/RecipeForm';
 
 const EditRecipe: React.FC = () => {
   const params = useParams<{ id: string }>();
-  const id = parseInt(params.id);
-  const history = useHistory();
+  const id = parseInt(params.id!);
+  const navigate = useNavigate();
   const currentUser = useSelector(selectCurrentUser);
   const currentUserFullName = useSelector(selectCurrentUserFullName);
   const [loading, setLoading] = useState(true);
@@ -17,7 +17,7 @@ const EditRecipe: React.FC = () => {
 
   const fetchAndCheckPermissions = useCallback(async () => {
     if (!currentUser) {
-      history.push('/login');
+      navigate('/login');
       return;
     }
 
@@ -25,7 +25,7 @@ const EditRecipe: React.FC = () => {
     if ('id' in recipe) {
       // TODO: Update to match user id in addition to name
       if (!currentUser.isAdmin && recipe.submitted_by !== currentUserFullName) {
-        history.push('/');
+        navigate('/');
         return;
       }
 
@@ -45,9 +45,9 @@ const EditRecipe: React.FC = () => {
       });
       setLoading(false);
     } else {
-      history.push('/404');
+      navigate('/404');
     }
-  }, [currentUser, currentUserFullName, history, id]);
+  }, [currentUser, currentUserFullName, navigate, id]);
 
   useEffect(() => {
     fetchAndCheckPermissions();

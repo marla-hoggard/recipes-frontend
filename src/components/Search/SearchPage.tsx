@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import SearchForm, { SearchValues } from './SearchForm';
 import { Category, Recipe } from '../../types/recipe.types';
 import RecipeList from '../base/RecipeList/RecipeList';
@@ -15,7 +15,7 @@ type UrlParams = {
 
 const SearchPage: React.FC = () => {
   const { search } = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [searchInitialValues, setSearchInitialValues] = useState<Partial<SearchValues>>({});
   const [noneFound, setNoneFound] = useState(false);
   const [searchResults, setSearchResults] = useState<Recipe[]>([]);
@@ -70,12 +70,12 @@ const SearchPage: React.FC = () => {
         setSearchInitialValues({ ...params, vegetarian: undefined });
       }
 
-      history.push('/search');
+      navigate('/search');
       fetchSearchResults(params);
     } else {
       setDisplaySearchForm(true);
     }
-  }, [search, history, fetchSearchResults]);
+  }, [search, navigate, fetchSearchResults]);
 
   return (
     <>

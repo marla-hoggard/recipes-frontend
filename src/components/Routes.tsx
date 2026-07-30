@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
+import { Routes as RRRoutes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { selectIsAuthenticated } from '../reducers/currentUser';
@@ -23,28 +23,56 @@ const Routes: React.FC = () => {
     return <Homepage />;
   }
 
+  // /login and /signup are appended as a suffix to whatever page the user is currently on,
+  // so they can't be expressed as ordinary react-router-dom v6 route paths.
+  if (pathname.endsWith('/signup')) {
+    if (isAuthenticated) {
+      return <Navigate to={pathname.replace('/signup', '')} replace />;
+    }
+    return (
+      <>
+        <Header />
+        <Main>
+          <SignupForm />
+        </Main>
+      </>
+    );
+  }
+
+  if (pathname.endsWith('/login')) {
+    if (isAuthenticated) {
+      return <Navigate to={pathname.replace('/login', '')} replace />;
+    }
+    return (
+      <>
+        <Header />
+        <Main>
+          <LoginForm />
+        </Main>
+      </>
+    );
+  }
+
   return (
     <>
       <Header />
       <Main>
-        <Switch>
-          <Route path="*/signup">
-            {isAuthenticated ? <Redirect to={pathname.replace('/signup', '')} /> : <SignupForm />}
-          </Route>
-          <Route path="*/login">
-            {isAuthenticated ? <Redirect to={pathname.replace('/login', '')} /> : <LoginForm />}
-          </Route>
-          <Route exact path="/search" component={SearchPage} />
-          <Route exact path="/browse" component={Browse} />
-          <Route path="/browse/:name" component={Browse} />
-          <Route path="/new">{isAuthenticated ? <AddRecipe /> : <Redirect to="/login" />}</Route>
-          <Route path="/recipe/:id/edit">
-            {isAuthenticated ? <EditRecipe /> : <Redirect to="/login" />}
-          </Route>
-          <Route path="/recipe/:id" component={RecipeView} />
-          <Route path="/404" component={InvalidRoute} />
-          <Route path="*" component={InvalidRoute} />
-        </Switch>
+        <RRRoutes>
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/browse" element={<Browse />} />
+          <Route path="/browse/:name" element={<Browse />} />
+          <Route
+            path="/new"
+            element={isAuthenticated ? <AddRecipe /> : <Navigate to="/login" replace />}
+          />
+          <Route
+            path="/recipe/:id/edit"
+            element={isAuthenticated ? <EditRecipe /> : <Navigate to="/login" replace />}
+          />
+          <Route path="/recipe/:id" element={<RecipeView />} />
+          <Route path="/404" element={<InvalidRoute />} />
+          <Route path="*" element={<InvalidRoute />} />
+        </RRRoutes>
       </Main>
     </>
   );
