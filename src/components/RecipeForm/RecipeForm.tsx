@@ -1,6 +1,6 @@
 /* eslint-disable func-names */
 import React, { useState, useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Formik, Form, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 
@@ -135,7 +135,7 @@ type Props = {
 };
 
 const RecipeForm: React.FC<Props> = ({ id, savedValues = {}, type }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [submitError, setSubmitError] = useState('');
   const [showIngredientNotes, setShowIngredientNotes] = useState(
     !!savedValues?.ingredientsWithNotes?.some((i) => i.note),
@@ -143,19 +143,21 @@ const RecipeForm: React.FC<Props> = ({ id, savedValues = {}, type }) => {
 
   const switchToFootnotes = useCallback(
     (values: FormValues, setFieldValue: (field: string, value: string) => void) => {
-      values.ingredientsTextarea.length
-        ? trimAndRemoveEmpty(values.ingredientsTextarea.split('\n')).forEach((ing, index) => {
-            setFieldValue(`ingredientsWithNotes.${index}.ingredient`, ing);
-          })
-        : setFieldValue(`ingredientsWithNotes.0.ingredient`, '');
+      if (values.ingredientsTextarea.length) {
+        trimAndRemoveEmpty(values.ingredientsTextarea.split('\n')).forEach((ing, index) => {
+          setFieldValue(`ingredientsWithNotes.${index}.ingredient`, ing);
+        });
+      } else {
+        setFieldValue(`ingredientsWithNotes.0.ingredient`, '');
+      }
       setShowIngredientNotes(true);
     },
     [],
   );
 
   const handleCancel = useCallback(() => {
-    history.push(`/recipe/${id}`);
-  }, [history, id]);
+    navigate(`/recipe/${id}`);
+  }, [navigate, id]);
 
   const handleSubmit = useCallback(
     async (values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
@@ -190,17 +192,17 @@ const RecipeForm: React.FC<Props> = ({ id, savedValues = {}, type }) => {
 
       if ('id' in result) {
         setSubmitting(false);
-        history.push(`/recipe/${result.id}`);
+        navigate(`/recipe/${result.id}`);
       } else {
         setSubmitError(result.error.message);
         setSubmitting(false);
       }
     },
-    [history, id, savedValues, showIngredientNotes, type],
+    [navigate, id, savedValues, showIngredientNotes, type],
   );
 
   if (type === 'edit' && !id) {
-    history.push('/404');
+    navigate('/404');
   }
 
   return (

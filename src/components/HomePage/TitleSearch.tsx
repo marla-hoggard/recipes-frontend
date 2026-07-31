@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import debounce from 'debounce-promise';
 import { Recipe } from '../../types/recipe.types';
@@ -33,7 +33,7 @@ const UserSearch: React.FC = () => {
   const resultsRef = useRef<HTMLUListElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const fetchSearchResults: AsyncSearchFunction = useCallback(async (queryString: string) => {
     if (queryString.length) {
@@ -65,11 +65,11 @@ const UserSearch: React.FC = () => {
 
   const goToSearchPage = useCallback(() => {
     if (query) {
-      history.push(`/search?wildcard=${query}`);
+      navigate(`/search?wildcard=${query}`);
     } else {
-      history.push('/search');
+      navigate('/search');
     }
-  }, [query, history]);
+  }, [query, navigate]);
 
   // Allow for arrow navigation
   const handleKeyDown = useCallback(
@@ -80,7 +80,7 @@ const UserSearch: React.FC = () => {
           if (results.length) {
             const selected = showResults || hasExactMatch ? results[cursor] : null;
             if (selected) {
-              history.push(`/recipe/${selected.id}`);
+              navigate(`/recipe/${selected.id}`);
             }
           } else {
             goToSearchPage();
@@ -107,17 +107,17 @@ const UserSearch: React.FC = () => {
         }
       }
     },
-    [cursor, goToSearchPage, hasExactMatch, history, results, showResults],
+    [cursor, goToSearchPage, hasExactMatch, navigate, results, showResults],
   );
 
   const handleResultClick = useCallback(
     (event: React.MouseEvent<HTMLLIElement>) => {
       const recipeClicked = event.currentTarget.dataset.id;
       if (recipeClicked) {
-        history.push(`/recipe/${recipeClicked}`);
+        navigate(`/recipe/${recipeClicked}`);
       }
     },
-    [history],
+    [navigate],
   );
 
   const handleResultsBlur = useCallback(

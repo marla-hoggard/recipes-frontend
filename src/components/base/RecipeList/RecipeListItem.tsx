@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import classNames from 'classnames';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { Recipe as RecipeType } from '../../../types/recipe.types';
@@ -26,11 +26,11 @@ const TagsList: React.FC<TagsListProps> = ({ tags = [], vegetarian }) => {
 const RecipeListItem: React.FC<Props> = ({
   recipe: { id, category, source, title, featured, tags, vegetarian },
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const goToRecipe = useCallback(() => {
-    history.push(`/recipe/${id}`);
-  }, [history, id]);
+    navigate(`/recipe/${id}`);
+  }, [navigate, id]);
 
   const color = getCategoryColor(category);
 

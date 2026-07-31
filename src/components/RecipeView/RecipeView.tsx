@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPrint, faStar } from '@fortawesome/free-solid-svg-icons';
 import { GetRecipeSuccess } from '../../types/recipe.types';
@@ -20,15 +20,15 @@ const RecipeView: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [recipe, setRecipe] = useState<GetRecipeSuccess>();
   const params = useParams<{ id: string }>();
-  const recipeId = parseInt(params.id);
-  const history = useHistory();
+  const recipeId = parseInt(params.id!);
+  const navigate = useNavigate();
   const isMobileView = useMediaQuery('screen and (max-width: 800px)');
 
   const fetchRecipe = useCallback(async () => {
     const results = await getRecipe(recipeId);
     if ('error' in results) {
       if (results.error.message === 'Recipe not found.') {
-        history.push('/404');
+        navigate('/404');
         return;
       }
       document.title = 'Glasser Family Recipes';
@@ -37,7 +37,7 @@ const RecipeView: React.FC = () => {
       setLoading(false);
       document.title = results.title;
     }
-  }, [history, recipeId]);
+  }, [navigate, recipeId]);
 
   useEffect(() => {
     fetchRecipe();
