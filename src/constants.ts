@@ -10,6 +10,9 @@ export const CATEGORIES = [
 
 export const USER_TOKEN_STORAGE_KEY = 'user_token';
 
+export const GENERIC_API_ERROR_MESSAGE =
+  'Something went wrong. Please try again later.';
+
 const getBackendURL = (env?: string) => {
   switch (env) {
     case 'local':

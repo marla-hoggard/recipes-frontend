@@ -27,11 +27,12 @@ const RecipeView: React.FC = () => {
   const fetchRecipe = useCallback(async () => {
     const results = await getRecipe(recipeId);
     if ('error' in results) {
-      if (results.error.message === 'Recipe not found.') {
+      if (results.error.message === 'Recipe not found') {
         navigate('/404');
         return;
       }
       document.title = 'Glasser Family Recipes';
+      setLoading(false);
     } else {
       setRecipe(results);
       setLoading(false);

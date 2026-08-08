@@ -1,3 +1,5 @@
+import { ApiError } from './api.types';
+
 export type CreateUserRequest = {
   first_name: string;
   last_name: string;
@@ -23,8 +25,4 @@ type UserSuccessResponse = {
   };
 };
 
-type UserErrorResponse = {
-  error: string;
-};
-
-export type UserResponse = UserSuccessResponse | UserErrorResponse;
+export type UserResponse = UserSuccessResponse | ApiError;

@@ -1,3 +1,5 @@
+import { ApiError } from './api.types';
+
 export type Category =
   | 'appetizer'
   | 'entree'
@@ -51,14 +53,7 @@ type AddRecipeSuccess = {
   title: string;
 };
 
-type AddRecipeError = {
-  error: {
-    message: string;
-    details?: string;
-  };
-};
-
-export type AddRecipeResponse = AddRecipeSuccess | AddRecipeError;
+export type AddRecipeResponse = AddRecipeSuccess | ApiError;
 
 export type GetRecipeSuccess = {
   id: number;
@@ -77,14 +72,7 @@ export type GetRecipeSuccess = {
   created_at: string;
 };
 
-type GetRecipeError = {
-  error: {
-    message: string;
-    hint?: string;
-  };
-};
-
-export type GetRecipeResponse = GetRecipeSuccess | GetRecipeError;
+export type GetRecipeResponse = GetRecipeSuccess | ApiError;
 
 export type Recipe = {
   id: number;
