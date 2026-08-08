@@ -84,7 +84,7 @@ const SignupForm: React.FC = () => {
         saveTokenToStorage(result.user.token);
         navigate(pathname.replace(/\/signup$/, ''));
       } else {
-        setGeneralError(result.error);
+        setGeneralError(result.error.message);
         setSubmitting(false);
       }
     },

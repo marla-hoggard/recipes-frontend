@@ -53,7 +53,7 @@ const LoginForm: React.FC = () => {
         saveTokenToStorage(result.user.token);
         navigate(pathname.replace(/\/login$/, ''));
       } else {
-        setGeneralError(result.error);
+        setGeneralError(result.error.message);
         setSubmitting(false);
       }
     },

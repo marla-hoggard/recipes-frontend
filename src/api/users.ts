@@ -1,5 +1,5 @@
 import { CreateUserRequest, UserResponse, SigninRequest } from '../types/users.types';
-import { BACKEND_BASE_URL } from '../constants';
+import { BACKEND_BASE_URL, GENERIC_API_ERROR_MESSAGE } from '../constants';
 
 export const createUser = async (request: CreateUserRequest): Promise<UserResponse> => {
   try {
@@ -11,10 +11,10 @@ export const createUser = async (request: CreateUserRequest): Promise<UserRespon
       body: JSON.stringify(request),
     });
     const result = await response.json();
-    return result || { error: 'API Function Error' };
+    return result || { error: { message: GENERIC_API_ERROR_MESSAGE } };
   } catch (error) {
     console.error(error);
-    return { error: 'API Function Error' };
+    return { error: { message: GENERIC_API_ERROR_MESSAGE } };
   }
 };
 
@@ -28,10 +28,10 @@ export const login = async (request: SigninRequest): Promise<UserResponse> => {
       body: JSON.stringify(request),
     });
     const result = await response.json();
-    return result || { error: 'API Function Error' };
+    return result || { error: { message: GENERIC_API_ERROR_MESSAGE } };
   } catch (error) {
     console.error(error);
-    return { error: 'API Function Error' };
+    return { error: { message: GENERIC_API_ERROR_MESSAGE } };
   }
 };
 
@@ -61,9 +61,9 @@ export const getUserByToken = async (token: string): Promise<UserResponse> => {
       },
     });
     const result = await response.json();
-    return result || { error: 'API Function Error' };
+    return result || { error: { message: GENERIC_API_ERROR_MESSAGE } };
   } catch (error) {
     console.error(error);
-    return { error: 'API Function Error' };
+    return { error: { message: GENERIC_API_ERROR_MESSAGE } };
   }
 };

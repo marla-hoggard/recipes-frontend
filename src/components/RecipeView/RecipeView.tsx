@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPrint, faStar } from '@fortawesome/free-solid-svg-icons';
 import { GetRecipeSuccess } from '../../types/recipe.types';
@@ -10,6 +10,7 @@ import Loading from '../base/Loading';
 import LeftPanel from './LeftPanel';
 import RightPanel from './RightPanel';
 import RecipeJsonLd from './RecipeJsonLd';
+import RecipeNotFound from './RecipeNotFound';
 import classes from './RecipeView.module.css';
 
 const printRecipe = () => {
@@ -19,25 +20,27 @@ const printRecipe = () => {
 const RecipeView: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [recipe, setRecipe] = useState<GetRecipeSuccess>();
+  const [notFound, setNotFound] = useState(false);
   const params = useParams<{ id: string }>();
   const recipeId = parseInt(params.id!);
-  const navigate = useNavigate();
   const isMobileView = useMediaQuery('screen and (max-width: 800px)');
 
   const fetchRecipe = useCallback(async () => {
     const results = await getRecipe(recipeId);
     if ('error' in results) {
-      if (results.error.message === 'Recipe not found.') {
-        navigate('/404');
-        return;
+      if (results.error.message === 'Recipe not found') {
+        setNotFound(true);
+        document.title = 'Recipe Not Found';
+      } else {
+        document.title = 'Glasser Family Recipes';
       }
-      document.title = 'Glasser Family Recipes';
+      setLoading(false);
     } else {
       setRecipe(results);
       setLoading(false);
       document.title = results.title;
     }
-  }, [navigate, recipeId]);
+  }, [recipeId]);
 
   useEffect(() => {
     fetchRecipe();
@@ -49,6 +52,10 @@ const RecipeView: React.FC = () => {
 
   if (loading) {
     return <Loading />;
+  }
+
+  if (notFound) {
+    return <RecipeNotFound />;
   }
 
   if (recipe) {
