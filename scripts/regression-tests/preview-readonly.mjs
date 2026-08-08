@@ -52,7 +52,14 @@ record('recipe view renders real data', !!h1Text, h1Text || '(none)');
 await page.goto(base + '/this-does-not-exist', { waitUntil: 'networkidle' });
 await page.waitForTimeout(300);
 const invalidRouteText = await page.textContent('body');
-record('unknown route shows a page (InvalidRoute), not a blank screen', invalidRouteText.trim().length > 0);
+record('unknown route shows Page Not Found fail whale', invalidRouteText.includes('Page Not Found'));
+
+await page.goto(base + '/recipe/999999999', { waitUntil: 'networkidle' });
+await page.waitForTimeout(300);
+const missingRecipeUrl = page.url();
+const missingRecipeText = await page.textContent('body');
+record('missing recipe renders Recipe Not Found in place (no redirect)', missingRecipeUrl.endsWith('/recipe/999999999'), missingRecipeUrl);
+record('missing recipe shows Recipe Not Found fail whale', missingRecipeText.includes('Recipe Not Found'));
 
 // --- client-side validation only, no submission ---
 await page.goto(base + '/signup', { waitUntil: 'networkidle' });
