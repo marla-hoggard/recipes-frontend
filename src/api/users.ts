@@ -1,5 +1,6 @@
 import { CreateUserRequest, UserResponse, SigninRequest } from '../types/users.types';
 import { BACKEND_BASE_URL, GENERIC_API_ERROR_MESSAGE } from '../constants';
+import { authHeaders } from './helpers';
 
 export const createUser = async (request: CreateUserRequest): Promise<UserResponse> => {
   try {
@@ -41,8 +42,8 @@ export const signout = async (token: string): Promise<boolean> => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        ...authHeaders(token),
       },
-      body: JSON.stringify({ token }),
     });
     await response.text();
     return true;
@@ -54,10 +55,11 @@ export const signout = async (token: string): Promise<boolean> => {
 
 export const getUserByToken = async (token: string): Promise<UserResponse> => {
   try {
-    const response = await fetch(`${BACKEND_BASE_URL}/user?token=${token}`, {
+    const response = await fetch(`${BACKEND_BASE_URL}/user`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        ...authHeaders(token),
       },
     });
     const result = await response.json();

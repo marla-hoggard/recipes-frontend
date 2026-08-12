@@ -12,3 +12,7 @@ export const getTokenFromStorage = (): string | null => {
   const token = sessionStorage.getItem(USER_TOKEN_STORAGE_KEY);
   return token || null;
 };
+
+export const authHeaders = (token: string): HeadersInit => ({
+  Authorization: `Bearer ${token}`,
+});

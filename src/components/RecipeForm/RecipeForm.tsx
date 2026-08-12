@@ -1,6 +1,7 @@
 /* eslint-disable func-names */
 import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Formik, Form, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 
@@ -12,6 +13,7 @@ import {
   Ingredient,
 } from '../../types/recipe.types';
 import { addRecipe, editRecipe } from '../../api/recipe';
+import { selectCurrentUser } from '../../reducers/currentUser';
 import { CATEGORIES } from '../../constants';
 import {
   countOccurrences,
@@ -136,6 +138,7 @@ type Props = {
 
 const RecipeForm: React.FC<Props> = ({ id, savedValues = {}, type }) => {
   const navigate = useNavigate();
+  const currentUser = useSelector(selectCurrentUser);
   const [submitError, setSubmitError] = useState('');
   const [showIngredientNotes, setShowIngredientNotes] = useState(
     !!savedValues?.ingredientsWithNotes?.some((i) => i.note),
@@ -166,7 +169,7 @@ const RecipeForm: React.FC<Props> = ({ id, savedValues = {}, type }) => {
 
       if (type === 'edit' && id) {
         const editRequest = prepareEditRequest(values, savedValues, showIngredientNotes);
-        result = await editRecipe(id, editRequest);
+        result = await editRecipe(id, editRequest, currentUser?.token ?? '');
       } else {
         const addRequest: AddRecipeRequest = {
           ...values,
@@ -187,7 +190,7 @@ const RecipeForm: React.FC<Props> = ({ id, savedValues = {}, type }) => {
           steps: trimAndRemoveEmpty(replaceFractions(values.steps).split(/\n+/)),
           footnotes: trimAndRemoveEmpty(values.footnotes.map((f) => replaceFractions(f))),
         };
-        result = await addRecipe(addRequest);
+        result = await addRecipe(addRequest, currentUser?.token ?? '');
       }
 
       if ('id' in result) {
@@ -198,7 +201,7 @@ const RecipeForm: React.FC<Props> = ({ id, savedValues = {}, type }) => {
         setSubmitting(false);
       }
     },
-    [navigate, id, savedValues, showIngredientNotes, type],
+    [navigate, id, savedValues, showIngredientNotes, type, currentUser],
   );
 
   if (type === 'edit' && !id) {
