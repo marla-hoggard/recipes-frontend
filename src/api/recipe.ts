@@ -7,6 +7,7 @@ import {
   Recipe,
 } from '../types/recipe.types';
 import { BACKEND_BASE_URL, GENERIC_API_ERROR_MESSAGE } from '../constants';
+import { authHeaders } from './helpers';
 
 /**
  * Add a new recipe.
@@ -20,8 +21,9 @@ export const addRecipe = async (
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        ...authHeaders(token),
       },
-      body: JSON.stringify({ ...request, token }),
+      body: JSON.stringify(request),
     });
     const result = await response.json();
     return result || { error: { message: GENERIC_API_ERROR_MESSAGE } };
@@ -44,8 +46,9 @@ export const editRecipe = async (
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        ...authHeaders(token),
       },
-      body: JSON.stringify({ ...request, token }),
+      body: JSON.stringify(request),
     });
     const result = await response.json();
     return result || { error: { message: GENERIC_API_ERROR_MESSAGE } };
