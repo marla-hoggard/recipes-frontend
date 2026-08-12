@@ -11,14 +11,17 @@ import { BACKEND_BASE_URL, GENERIC_API_ERROR_MESSAGE } from '../constants';
 /**
  * Add a new recipe.
  */
-export const addRecipe = async (request: AddRecipeRequest): Promise<AddRecipeResponse> => {
+export const addRecipe = async (
+  request: AddRecipeRequest,
+  token: string,
+): Promise<AddRecipeResponse> => {
   try {
     const response = await fetch(`${BACKEND_BASE_URL}/recipe/new`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(request),
+      body: JSON.stringify({ ...request, token }),
     });
     const result = await response.json();
     return result || { error: { message: GENERIC_API_ERROR_MESSAGE } };
@@ -34,6 +37,7 @@ export const addRecipe = async (request: AddRecipeRequest): Promise<AddRecipeRes
 export const editRecipe = async (
   recipeId: number,
   request: EditRecipeRequest,
+  token: string,
 ): Promise<AddRecipeResponse> => {
   try {
     const response = await fetch(`${BACKEND_BASE_URL}/recipe/${recipeId}`, {
@@ -41,7 +45,7 @@ export const editRecipe = async (
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(request),
+      body: JSON.stringify({ ...request, token }),
     });
     const result = await response.json();
     return result || { error: { message: GENERIC_API_ERROR_MESSAGE } };
